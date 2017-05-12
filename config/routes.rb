@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
-  resources :answers
   devise_for :users
-  resources :questions
+  
+  resources :answers
+  resources :questions do
+    resources :ques_cats
+  end
+
+  resources :categories
 
   root to: 'questions#index'
   # The priority is based upon order of creation: first created -> highest priority.

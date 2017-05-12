@@ -15,6 +15,10 @@ class QuestionsController < ApplicationController
   # GET /questions/new
   def new
     @question = current_user.questions.build
+
+    @all_categories = Category.all
+
+    @question_category = @question.ques_cats.build
   end
 
   # GET /questions/1/edit

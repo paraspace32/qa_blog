@@ -11,11 +11,18 @@
     <div class="container">
       <%= link_to "Quora", root_path, class: "navbar-brand" %>
       <ul class="nav navbar-nav navbar-right">
-        <% if user_signed_in? %>
-          <li>
-            <%= link_to "New Article", new_question_path %>
-          </li>
-        <% end %>
+        <% if user_signed_in? -%>
+            <ul class="nav navbar-nav navbar-right">
+              <li><%= link_to 'Submit link', new_question_path %></li>
+              <li><%= link_to 'Account', edit_user_registration_path %></li>
+              <li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
+            </ul>
+          <% else -%>
+            <ul class="nav navbar-nav pull-right">
+              <li><%= link_to 'Sign up', new_user_registration_path %></li>
+              <li><%= link_to 'Sign in', new_user_session_path %></li>
+            </ul>
+          <% end -%>
       </ul>
     </div>
   </nav>
@@ -33,7 +40,7 @@
       <div class="col-md-4">
         <ul class="list-group">
           <li>
-            <%= link_to "All Articles", root_path, class: "list-group-item" %>
+            <%= link_to "All Questions", root_path, class: "list-group-item" %>
           </li>
           <% Category.all.each do |category| %>
             <li>
